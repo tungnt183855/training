@@ -2,27 +2,48 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <virtualType name="MyCustomDebug" type="Magento\Framework\Logger\Handler\Base">
+    <virtualType name="CustomDebug" type="Magento\Framework\Logger\Handler\Base">
         <arguments>
-            <argument name="fileName" xsi:type="string">/var/log/payment.log</argument>
+            <argument name="fileName" xsi:type="string">/var/log/custom.log</argument>
         </arguments>
     </virtualType>
 
     <virtualType name="MyCustomLogger" type="Magento\Framework\Logger\Monolog">
         <arguments>
             <argument name="handlers" xsi:type="array">
-                <item name="debug" xsi:type="object">MyCustomDebug</item>
+                <item name="error" xsi:type="object">CustomDebug</item>
             </argument>
         </arguments>
     </virtualType>
 
-    <type name="Magento\Payment\Model\Method\Logger">
+    <type name="Magenest\CustomLog\Controller\Blog\Index">
         <arguments>
             <argument name="logger" xsi:type="object">MyCustomLogger</argument>
-            <argument name="handlers" xsi:type="array">
-                <item name="debug" xsi:type="object">MyCustomDebug</item>
-            </argument>
         </arguments>
     </type>
+
+
+    <!--    <virtualType name="MyCustomDebug" type="Magento\Framework\Logger\Handler\Base">-->
+<!--        <arguments>-->
+<!--            <argument name="fileName" xsi:type="string">/var/log/custom.log</argument>-->
+<!--        </arguments>-->
+<!--    </virtualType>-->
+
+<!--    <virtualType name="MyCustomLogger" type="Magento\Framework\Logger\Monolog">-->
+<!--        <arguments>-->
+<!--            <argument name="handlers" xsi:type="array">-->
+<!--                <item name="debug" xsi:type="object">MyCustomDebug</item>-->
+<!--            </argument>-->
+<!--        </arguments>-->
+<!--    </virtualType>-->
+
+<!--    <type name="Magenest\CustomLog\Controller\Blog\Index">-->
+<!--        <arguments>-->
+<!--            <argument name="logger" xsi:type="object">MyCustomLogger</argument>-->
+<!--            <argument name="handlers" xsi:type="array">-->
+<!--                <item name="debug" xsi:type="object">MyCustomDebug</item>-->
+<!--            </argument>-->
+<!--        </arguments>-->
+<!--    </type>-->
 
 </config>
